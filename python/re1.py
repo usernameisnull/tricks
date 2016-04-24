@@ -17,3 +17,11 @@ def rev(s):
 
 rev(input_str)
 
+"""
+    第二种方案
+"""
+def rev2(s):
+    new_str = re.sub(r'\b([wW]\w+)\b', r'\1s', s)
+    return new_str
+
+print rev2(input_str)
