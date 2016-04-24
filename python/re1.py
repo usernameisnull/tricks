@@ -17,11 +17,30 @@ def rev(s):
 
 rev(input_str)
 
-"""
-    第二种方案
-"""
 def rev2(s):
+    """
+    第二种方案
+    让sub的第二个参数为string，而不是callable，更好
+    """
     new_str = re.sub(r'\b([wW]\w+)\b', r'\1s', s)
     return new_str
 
 print rev2(input_str)
+
+
+def rev3(s):
+    """
+    第三种方案
+    sub的第二个参数使用\g<1>,比起第二个方案的好处是，如果我要在单词的末尾
+    添加‘0’，那么第二个方案就会出问题\10，会认为是第10个匹配组
+    """
+    new_str = re.sub(r'\b[wW]\w+\b', r'\g<1>s', s)
+    return new_str
+
+print rev2(input_str)
+
+# raise error, "invalid group reference"
+#print re.sub(r'\b([wW]\w+)\b', r'\10', input_str)
+print re.sub(r'\b([wW]\w+)\b', r'\g<1>0', input_str)
+
+    
